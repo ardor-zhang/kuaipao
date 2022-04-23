@@ -5,6 +5,15 @@ import '@vue/runtime-core';
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ElAside: typeof import('element-plus/es')['ElAside'];
+    ElCol: typeof import('element-plus/es')['ElCol'];
+    ElContainer: typeof import('element-plus/es')['ElContainer'];
+    ElHeader: typeof import('element-plus/es')['ElHeader'];
+    ElIcon: typeof import('element-plus/es')['ElIcon'];
+    ElMain: typeof import('element-plus/es')['ElMain'];
+    ElRow: typeof import('element-plus/es')['ElRow'];
+    ElTabPane: typeof import('element-plus/es')['ElTabPane'];
+    ElTabs: typeof import('element-plus/es')['ElTabs'];
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default'];
   }
 }

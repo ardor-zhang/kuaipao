@@ -24,5 +24,6 @@ module.exports = defineConfig({
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
+    'vue/multi-word-component-names': 'off',
   },
 });

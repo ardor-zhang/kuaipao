@@ -1,0 +1,22 @@
+{
+  "container": {
+    "id": 1,
+    "style": {
+      "width": 375,
+      "height": 667
+    }
+  },
+  "components": [
+    {
+      "id": 2,
+      "key": "button",
+      "style": {
+        "width": 100,
+        "height": 100,
+        "top": 100,
+        "left": 100,
+        "zIndex": 1
+      }
+    }
+  ]
+}
