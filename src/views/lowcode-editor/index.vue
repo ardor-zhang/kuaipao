@@ -2,7 +2,7 @@
   import Header from './components/Header/index.vue';
   import LeftAside from './components/LeftAside';
   import RightAside from './components/RightAside/index.vue';
-  import Editor from './components/Editor/index.vue';
+  import Editor from './components/Editor';
 </script>
 
 <template>

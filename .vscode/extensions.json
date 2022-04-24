@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "johnsoncodehk.volar",
-    "voorjaar.windicss-intellisense"
+    "voorjaar.windicss-intellisense",
+    "aaron-bond.better-comments"
   ]
 }

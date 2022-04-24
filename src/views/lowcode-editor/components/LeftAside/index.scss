@@ -1,3 +1,37 @@
 .left-aside {
   height: 100%;
+
+  .preview-container {
+    min-height: 100px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 6px 0;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: move;
+    user-select: none;
+
+    .label {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 12px;
+      padding: 4px 6px;
+      background: skyblue;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #eee;
+      opacity: 0.5;
+    }
+  }
 }

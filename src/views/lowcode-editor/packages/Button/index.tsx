@@ -1,3 +1,4 @@
+import { Package } from '@editor/types/index';
 import { Button } from 'vant';
 
 export default {
@@ -5,4 +6,4 @@ export default {
   previewLabel: '按钮',
   preview: () => <Button>按钮</Button>,
   render: () => <Button>按钮</Button>,
-};
+} as Package;

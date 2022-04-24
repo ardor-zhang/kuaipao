@@ -1,9 +1,10 @@
 import packages from '@/views/lowcode-editor/packages';
+import { Package } from '@editor/types/index';
 
 function registerPackasges() {
-  const packagesList = [];
-  const packagesMap = {};
-  const register = (components: any) => {
+  const packagesList: Package[] = [];
+  const packagesMap: Record<string, Package> = {};
+  const register = (components: Package) => {
     packagesList.push(components);
     packagesMap[components.key] = components;
   };
