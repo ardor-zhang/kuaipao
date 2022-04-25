@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { EditorData } from '@editor/types';
 
 const editorBoxRef = ref<null | HTMLElement>(null);
@@ -19,4 +19,22 @@ const dataWithSelectedStatus = computed(() => {
   };
 });
 
-export { editorBoxRef, editorData, dataWithSelectedStatus };
+// 当前被选中的组件的 ref
+const currentSelectedItemRef = ref<null | HTMLElement>(null);
+
+// 当前被选中的组件的 data
+const currentSelectedItemData = ref<null | EditorData>(null);
+// {
+//   id: {
+//     ref:
+//     data:
+//   }
+// }
+
+export {
+  editorBoxRef,
+  editorData,
+  dataWithSelectedStatus,
+  currentSelectedItemRef,
+  currentSelectedItemData,
+};

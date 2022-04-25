@@ -22,12 +22,15 @@ export default defineComponent({
     onMounted(() => {
       const { offsetWidth, offsetHeight } = itemRef.value!;
       //!todo 理论上这里应该单向数据的
+      // 1. 从组件列表拖拽到画布上以鼠标位置定位
       if (props.item.isFirst) {
-        // 首次
         props.item.style.left -= offsetWidth / 2;
         props.item.style.top -= offsetHeight / 2;
         props.item.isFirst = false;
       }
+      //2. 渲染后添加宽度和高度
+      props.item.style.width = offsetWidth;
+      props.item.style.height = offsetHeight;
     });
     const { handleMouseDown, draging } = useItemDrag(props.item, itemRef);
 

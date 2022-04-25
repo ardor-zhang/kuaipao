@@ -31,5 +31,19 @@
     .draging {
       cursor: move;
     }
+
+    .guide-line-x {
+      position: absolute;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid skyblue;
+    }
+
+    .guide-line-y {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-right: 1px solid skyblue;
+    }
   }
 }
