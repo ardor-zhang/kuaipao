@@ -29,6 +29,7 @@ export default function useDragPackage() {
     if (!currentPackage.value) {
       return console.log('未获取到组件');
     }
+
     editorData.value = [
       ...editorData.value,
       {

@@ -3,6 +3,7 @@ import {
   dataWithSelectedStatus,
   currentSelectedItemRef,
   currentSelectedItemData,
+  editorData,
 } from '@editor/store';
 import { EditorData } from '@editor/types';
 import { clearAllSelected } from '@editor/utils/handleEditorData';
@@ -19,7 +20,6 @@ export default function useItemDrag(item: EditorData, itemRef: Ref) {
   };
 
   const draging = ref(false);
-
   const handleMouseMove = (e: MouseEvent) => {
     if (!itemRef.value) return;
     const { clientX, clientY } = e; // 当前鼠标相对于浏览器左上角的位置
