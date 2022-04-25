@@ -12,12 +12,17 @@ import {
   generateGuideLineDistance,
   automaticApproach,
 } from '../useGuidelines';
+import { cloneDeep } from 'lodash-es';
 
-export default function useItemDrag(item: EditorData, itemRef: Ref) {
+import { addAction } from '@editor/components/Header/useAction';
+
+export default function useItemDrag(item: Ref<EditorData>, itemRef: Ref) {
   const itemDragState = {
     startX: 0,
     startY: 0,
   };
+
+  let before: EditorData[] = [];
 
   const draging = ref(false);
   const handleMouseMove = (e: MouseEvent) => {
@@ -44,6 +49,7 @@ export default function useItemDrag(item: EditorData, itemRef: Ref) {
     document.removeEventListener('mouseup', handleMouseUp);
     guideLines.isX = false;
     guideLines.isY = false;
+    addAction(before, cloneDeep(editorData.value));
   };
 
   const handleItemSelectedStatus = (e: MouseEvent) => {
@@ -53,13 +59,14 @@ export default function useItemDrag(item: EditorData, itemRef: Ref) {
       // 未按住 shift 键
       clearAllSelected(); // 清空所有已选中元素
     }
-    item.selected = true;
+    item.value.selected = true;
   };
 
   const handleMouseDown = (e: MouseEvent) => {
+    before = cloneDeep(editorData.value);
     // 0. 记录当前被选中的元素
     currentSelectedItemRef.value = itemRef.value;
-    currentSelectedItemData.value = item;
+    currentSelectedItemData.value = item.value;
 
     // 1. 在元素上按下鼠标时
     draging.value = true;

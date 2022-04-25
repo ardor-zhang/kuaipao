@@ -9,26 +9,30 @@ interface ActionStack {
 }
 
 const actionStack = <ActionStack[]>[];
-let i = -1;
+let staclIndex = -1;
 
+// 往栈中添加记录
 const addAction = (before: EditorData[], after: EditorData[]) => {
+  actionStack.splice(staclIndex + 1);
   actionStack.push({
     before,
     after,
   });
-  i++;
+  staclIndex++;
 };
 
+// 撤销
 const revokeAction = () => {
-  if (i === -1) return;
-  editorData.value = actionStack[i].before;
-  i--;
+  if (staclIndex === -1) return;
+  editorData.value = actionStack[staclIndex].before;
+  staclIndex--;
 };
 
+// 重做
 const redoAction = () => {
-  if (i === actionStack.length - 1) return;
-  editorData.value = actionStack[i + 1].after;
-  i++;
+  if (staclIndex === actionStack.length - 1) return;
+  editorData.value = actionStack[staclIndex + 1].after;
+  staclIndex++;
 };
 
 export { addAction, revokeAction, redoAction };

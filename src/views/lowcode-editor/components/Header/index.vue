@@ -1,5 +1,10 @@
 <script setup lang="ts">
-  import { action } from './action';
+  import { onUnmounted } from 'vue';
+  import { actions, bindKeybordEvent } from './actions';
+
+  onUnmounted(() => {
+    bindKeybordEvent();
+  });
 </script>
 
 <template>
@@ -9,7 +14,7 @@
     </el-col>
     <el-col :span="12" class="action flex justify-center items-center">
       <div
-        v-for="(item, index) in action"
+        v-for="(item, index) in actions"
         :key="index"
         class="action-item"
         @click="item.event"

@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { nanoid } from 'nanoid';
 import { editorBoxRef, editorData } from '@editor/store';
 import { Package } from '@editor/types/index';
-
+import { addAction } from '@editor/components/Header/useAction';
 // 实现组件拖拽到画布
 
 export default function useDragPackage() {
@@ -30,7 +30,7 @@ export default function useDragPackage() {
       return console.log('未获取到组件');
     }
 
-    editorData.value = [
+    const after = [
       ...editorData.value,
       {
         id: nanoid(),
@@ -44,6 +44,9 @@ export default function useDragPackage() {
         },
       },
     ];
+
+    addAction(editorData.value, after);
+    editorData.value = after;
     currentPackage.value = null;
   };
 

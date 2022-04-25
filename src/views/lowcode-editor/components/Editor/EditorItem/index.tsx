@@ -1,4 +1,11 @@
-import { ref, computed, defineComponent, PropType, onMounted } from 'vue';
+import {
+  ref,
+  computed,
+  defineComponent,
+  PropType,
+  onMounted,
+  toRef,
+} from 'vue';
 import { packagesMap } from '@editor/utils/registerPackasges';
 import { EditorData } from '@editor/types';
 import useItemDrag from './useItemDrag';
@@ -32,7 +39,10 @@ export default defineComponent({
       props.item.style.width = offsetWidth;
       props.item.style.height = offsetHeight;
     });
-    const { handleMouseDown, draging } = useItemDrag(props.item, itemRef);
+    const { handleMouseDown, draging } = useItemDrag(
+      toRef(props, 'item'),
+      itemRef,
+    );
 
     return () => (
       <div
