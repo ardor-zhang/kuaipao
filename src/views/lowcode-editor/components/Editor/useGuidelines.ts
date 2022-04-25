@@ -1,5 +1,9 @@
 import { reactive } from 'vue';
-import { currentSelectedItemRef, dataWithSelectedStatus } from '@editor/store';
+import {
+  editorBoxRef,
+  currentSelectedItemRef,
+  dataWithSelectedStatus,
+} from '@editor/store';
 
 interface GuideLine {
   // showLeft: 辅助线展示的位置 : dLeft被拖拽的元素要拖到哪个位置才能出现辅助线
@@ -27,7 +31,17 @@ const generateGuideLineDistance = () => {
   guideLines.x = [];
   guideLines.y = [];
   const { offsetHeight, offsetWidth } = currentSelectedItemRef.value!;
-  dataWithSelectedStatus.value.unSelectedItem.forEach(({ style }) => {
+  [
+    {
+      style: {
+        left: 0,
+        top: 0,
+        width: editorBoxRef.value?.clientWidth,
+        height: editorBoxRef.value?.clientHeight,
+      },
+    },
+    ...dataWithSelectedStatus.value.unSelectedItem,
+  ].forEach(({ style }) => {
     const { left, top, width, height } = style;
     guideLines.y.push({
       showLeft: left,
