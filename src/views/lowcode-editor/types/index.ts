@@ -19,6 +19,6 @@ export interface EditorData {
     height?: number;
     top: number;
     left: number;
-    zIndex?: number;
+    zIndex: number;
   };
 }

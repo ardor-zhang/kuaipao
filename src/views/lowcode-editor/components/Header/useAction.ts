@@ -1,6 +1,6 @@
 // 实现撤销和重做
 // 需要在栈中记录操作前后的 editorData
-import { editorData } from '@editor/store';
+import { editorData, dataWithSelectedStatus } from '@editor/store';
 import { EditorData } from '@editor/types';
 
 interface ActionStack {
@@ -35,4 +35,40 @@ const redoAction = () => {
   staclIndex++;
 };
 
-export { addAction, revokeAction, redoAction };
+// 置顶
+const placeTopAction = () => {
+  // 1. 找到所有未选中的最大 index
+  const maxIndex = dataWithSelectedStatus.value.unSelectedItem.reduce(
+    (prevIndex, i) => {
+      return Math.max(prevIndex, i.style.zIndex);
+    },
+    0,
+  );
+  // 所有选中的index = maxIndex + 1;
+  dataWithSelectedStatus.value.selectedItem.forEach(
+    (i) => (i.style.zIndex = maxIndex + 1),
+  );
+};
+
+// 置底
+const placeBottomAction = () => {
+  // 1. 找到所有未选中的最小 index
+  const minIndex = dataWithSelectedStatus.value.unSelectedItem.reduce(
+    (prevIndex, i) => {
+      return Math.min(prevIndex, i.style.zIndex);
+    },
+    Infinity,
+  );
+  // 所有选中的index = minIndex - 1;
+  dataWithSelectedStatus.value.selectedItem.forEach(
+    (i) => (i.style.zIndex = minIndex - 1),
+  );
+};
+
+export {
+  addAction,
+  revokeAction,
+  redoAction,
+  placeTopAction,
+  placeBottomAction,
+};

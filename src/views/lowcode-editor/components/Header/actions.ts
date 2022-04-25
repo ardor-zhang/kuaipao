@@ -1,11 +1,18 @@
 import revoke from '@/assets/action/revoke.svg?raw';
 import redo from '@/assets/action/redo.svg?raw';
-import { revokeAction, redoAction } from './useAction';
+import placeTop from '@/assets/action/place-top.svg?raw';
+import placeBottom from '@/assets/action/place-bottom.svg?raw';
+import {
+  revokeAction,
+  redoAction,
+  placeTopAction,
+  placeBottomAction,
+} from './useAction';
 
 interface Action {
   lable: string;
   icon: string;
-  keyboard: string;
+  keyboard?: string;
   event: () => void;
 }
 
@@ -14,7 +21,9 @@ const actionsKeyMapEvent = <Record<string, () => void>>{};
 
 const registerAction = (action: Action) => {
   actions.push(action);
-  actionsKeyMapEvent[action.keyboard] = action.event;
+  if (action.keyboard) {
+    actionsKeyMapEvent[action.keyboard] = action.event;
+  }
 };
 
 registerAction({
@@ -29,6 +38,16 @@ registerAction({
   icon: redo,
   keyboard: 'Ctrl + y',
   event: () => redoAction(),
+});
+registerAction({
+  lable: '置顶',
+  icon: placeTop,
+  event: () => placeTopAction(),
+});
+registerAction({
+  lable: '置底',
+  icon: placeBottom,
+  event: () => placeBottomAction(),
 });
 
 const handleKeydown = (e: KeyboardEvent) => {
