@@ -21,13 +21,13 @@ const addAction = (before: EditorData[], after: EditorData[]) => {
 
 const revokeAction = () => {
   if (i === -1) return;
-  editorData.value = actionStack[i].before;
+  editorData.value = { ...editorData.value, data: actionStack[i].before };
   i--;
 };
 
 const redoAction = () => {
   if (i === actionStack.length - 1) return;
-  editorData.value = actionStack[i + 1].after;
+  editorData.value = { ...editorData.value, data: actionStack[i + 1].after };
   i++;
 };
 

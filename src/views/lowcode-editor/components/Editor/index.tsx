@@ -28,7 +28,7 @@ export default defineComponent({
               class="guide-line-y"
             ></div>
           )}
-          {editorData.value.map((item) => (
+          {editorData.value.data.map((item) => (
             <EditorItem item={item} key={item.id} />
           ))}
         </div>

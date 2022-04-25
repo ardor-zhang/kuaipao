@@ -3,13 +3,13 @@ import { EditorData } from '@editor/types';
 
 const editorBoxRef = ref<null | HTMLElement>(null);
 
-const editorData = ref<EditorData[]>([]);
+const editorData = ref<{ data: EditorData[] }>({ data: [] });
 
 const dataWithSelectedStatus = computed(() => {
   const selectedItem = <EditorData[]>[];
   const unSelectedItem = <EditorData[]>[];
 
-  editorData.value.forEach((item) =>
+  editorData.value.data.forEach((item) =>
     (item.selected ? selectedItem : unSelectedItem).push(item),
   );
 
