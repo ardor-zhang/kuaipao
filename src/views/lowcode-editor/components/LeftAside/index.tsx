@@ -11,7 +11,7 @@ export default defineComponent({
 
     return () => (
       <ElTabs tab-position="left" class="left-aside">
-        <ElTabPane label="Components" class="left-aside-tap">
+        <ElTabPane label="组件" class="left-aside-tap">
           {packagesList.map((item) => (
             <div
               class="preview-container"

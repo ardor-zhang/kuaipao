@@ -55,6 +55,7 @@ registerAction({
 });
 registerAction({
   lable: '删除',
+  keyboard: 'Backspace',
   icon: delete_,
   event: () => deleteAction(),
 });
@@ -65,11 +66,14 @@ registerAction({
 });
 
 const handleKeydown = (e: KeyboardEvent) => {
-  const { ctrlKey, key } = e;
+  const { ctrlKey } = e;
+  let { key } = e;
+
   if (ctrlKey) {
-    actionsKeyMapEvent[`Ctrl + ${key}`] &&
-      actionsKeyMapEvent[`Ctrl + ${key}`]();
+    key = `Ctrl + ${key}`;
   }
+
+  actionsKeyMapEvent[key] && actionsKeyMapEvent[key]();
 };
 
 const bindKeybordEvent = (() => {
