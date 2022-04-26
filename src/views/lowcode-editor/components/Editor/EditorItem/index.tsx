@@ -9,6 +9,12 @@ import {
 import { packagesMap } from '@editor/utils/registerPackasges';
 import { EditorData } from '@editor/types';
 import useItemDrag from './useItemDrag';
+import { $dropdown, DropdownItem } from '@/components/Dropdown';
+import {
+  placeTopAction,
+  placeBottomAction,
+  deleteAction,
+} from '@editor/components/Header/useAction';
 
 export default defineComponent({
   props: {
@@ -33,6 +39,28 @@ export default defineComponent({
 
     const handleContextMenu = (e: MouseEvent) => {
       e.preventDefault();
+      $dropdown({
+        el: e.target as HTMLElement,
+        content: () => (
+          <>
+            <DropdownItem
+              label="删除"
+              icon="icon-delete"
+              onClick={() => deleteAction()}
+            />
+            <DropdownItem
+              label="置顶"
+              icon="icon-delete"
+              onClick={() => placeTopAction()}
+            />
+            <DropdownItem
+              label="置底"
+              icon="icon-delete"
+              onClick={() => placeBottomAction()}
+            />
+          </>
+        ),
+      });
     };
 
     onMounted(() => {

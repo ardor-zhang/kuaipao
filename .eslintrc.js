@@ -26,5 +26,7 @@ module.exports = defineConfig({
     '@typescript-eslint/no-var-requires': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/no-mutating-props': 'off', // 暂时关闭
+    'vue/one-component-per-file': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
   },
 });
