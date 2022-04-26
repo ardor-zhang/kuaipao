@@ -36,8 +36,8 @@ export default function useItemDrag(item: Ref<EditorData>, itemRef: Ref) {
     const auto = automaticApproach({ moveX, moveY });
 
     dataWithSelectedStatus.value.selectedItem.forEach((i) => {
-      i.style.left += moveX + auto.x; // 重新定位元素
-      i.style.top += moveY + auto.y;
+      i.position.left += moveX + auto.x; // 重新定位元素
+      i.position.top += moveY + auto.y;
     });
   };
 

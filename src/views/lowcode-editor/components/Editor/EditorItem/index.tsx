@@ -25,14 +25,12 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const itemStyle = computed(() => {
-      const { top, left, width, height } = props.item.style;
+    const itemPosition = computed(() => {
+      const { top, left, zIndex } = props.item.position;
       return {
-        ...props.item.style,
+        zIndex,
         top: top + 'px',
         left: left + 'px',
-        width: width ? width + 'px' : 'auto',
-        height: height ? height + 'px' : 'auto',
       };
     });
 
@@ -74,8 +72,8 @@ export default defineComponent({
       //!todo 理论上这里应该单向数据的
       // 1. 从组件列表拖拽到画布上以鼠标位置定位
       if (props.item.isFirst) {
-        props.item.style.left -= offsetWidth / 2;
-        props.item.style.top -= offsetHeight / 2;
+        props.item.position.left -= offsetWidth / 2;
+        props.item.position.top -= offsetHeight / 2;
         props.item.isFirst = false;
       }
       //2. 渲染后添加宽度和高度
@@ -91,13 +89,19 @@ export default defineComponent({
           draging: draging.value,
         }}
         ref={itemRef}
-        style={itemStyle.value}
+        style={itemPosition.value}
         onMousedown={(e) => handleMouseDown(e)}
         onContextmenu={(e) => handleContextMenu(e)}
       >
         {props.item.selected && <Resize item={props.item} />}
 
-        {packagesMap[props.item.key].render()}
+        {packagesMap[props.item.key].render({
+          style: {
+            ...props.item.style,
+            width: props.item.style.width + 'px',
+            height: props.item.style.height + 'px',
+          },
+        })}
       </div>
     );
   },

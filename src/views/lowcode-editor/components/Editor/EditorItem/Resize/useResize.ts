@@ -44,13 +44,13 @@ export default function useResize(item: Ref<EditorData>) {
 
     // 向左缩放，left 值需要发生变化
     if (resizeDirection.horizontal === 'left') {
-      item.value.style.left += moveX;
+      item.value.position.left += moveX;
       moveX = -moveX;
     }
 
     // 向上缩放，top 值需要发生变化
     if (resizeDirection.vertical === 'top') {
-      item.value.style.top += moveY;
+      item.value.position.top += moveY;
       moveY = -moveY;
     }
 

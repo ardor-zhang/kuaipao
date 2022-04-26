@@ -42,13 +42,13 @@ const placeTopAction = () => {
   // 1. 找到所有未选中的最大 index
   const maxIndex = dataWithSelectedStatus.value.unSelectedItem.reduce(
     (prevIndex, i) => {
-      return Math.max(prevIndex, i.style.zIndex);
+      return Math.max(prevIndex, i.position.zIndex);
     },
     0,
   );
   // 所有选中的index = maxIndex + 1;
   dataWithSelectedStatus.value.selectedItem.forEach(
-    (i) => (i.style.zIndex = maxIndex + 1),
+    (i) => (i.position.zIndex = maxIndex + 1),
   );
   addAction(before, cloneDeep(editorData.value));
 };
@@ -59,13 +59,13 @@ const placeBottomAction = () => {
   // 1. 找到所有未选中的最小 index
   const minIndex = dataWithSelectedStatus.value.unSelectedItem.reduce(
     (prevIndex, i) => {
-      return Math.min(prevIndex, i.style.zIndex);
+      return Math.min(prevIndex, i.position.zIndex);
     },
     Infinity,
   );
   // 所有选中的index = minIndex - 1;
   dataWithSelectedStatus.value.selectedItem.forEach(
-    (i) => (i.style.zIndex = minIndex - 1),
+    (i) => (i.position.zIndex = minIndex - 1),
   );
   addAction(before, cloneDeep(editorData.value));
 };

@@ -33,16 +33,19 @@ const generateGuideLineDistance = () => {
   const { offsetHeight, offsetWidth } = currentSelectedItemRef.value!;
   [
     {
-      style: {
+      position: {
         left: 0,
         top: 0,
+      },
+      style: {
         width: editorBoxRef.value?.clientWidth,
         height: editorBoxRef.value?.clientHeight,
       },
     },
     ...dataWithSelectedStatus.value.unSelectedItem,
-  ].forEach(({ style }) => {
-    const { left, top, width, height } = style;
+  ].forEach(({ position, style }) => {
+    const { left, top } = position;
+    const { width, height } = style;
     guideLines.y.push({
       showLeft: left,
       dLeft: left - offsetWidth,
