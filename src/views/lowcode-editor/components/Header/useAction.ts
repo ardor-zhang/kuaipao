@@ -70,6 +70,12 @@ const placeBottomAction = () => {
   addAction(before, cloneDeep(editorData.value));
 };
 
+// 删除选中的
+const deleteAction = () => {
+  const before = cloneDeep(editorData.value);
+  editorData.value = dataWithSelectedStatus.value.unSelectedItem;
+  addAction(before, cloneDeep(editorData.value));
+};
 // 清空
 const clearAction = () => {
   const before = cloneDeep(editorData.value);
@@ -83,5 +89,6 @@ export {
   redoAction,
   placeTopAction,
   placeBottomAction,
+  deleteAction,
   clearAction,
 };

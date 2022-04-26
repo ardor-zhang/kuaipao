@@ -2,12 +2,14 @@ import revoke from '@/assets/action/revoke.svg?raw';
 import redo from '@/assets/action/redo.svg?raw';
 import placeTop from '@/assets/action/place-top.svg?raw';
 import placeBottom from '@/assets/action/place-bottom.svg?raw';
+import delete_ from '@/assets/action/delete.svg?raw';
 import clear from '@/assets/action/clear.svg?raw';
 import {
   revokeAction,
   redoAction,
   placeTopAction,
   placeBottomAction,
+  deleteAction,
   clearAction,
 } from './useAction';
 
@@ -50,6 +52,11 @@ registerAction({
   lable: '置底',
   icon: placeBottom,
   event: () => placeBottomAction(),
+});
+registerAction({
+  lable: '删除',
+  icon: delete_,
+  event: () => deleteAction(),
 });
 registerAction({
   lable: '清空',

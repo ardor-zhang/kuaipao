@@ -26,6 +26,15 @@ export default defineComponent({
 
     const itemRef = ref<null | HTMLElement>(null);
 
+    const { handleMouseDown, draging } = useItemDrag(
+      toRef(props, 'item'),
+      itemRef,
+    );
+
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+
     onMounted(() => {
       const { offsetWidth, offsetHeight } = itemRef.value!;
       //!todo 理论上这里应该单向数据的
@@ -39,10 +48,6 @@ export default defineComponent({
       props.item.style.width = offsetWidth;
       props.item.style.height = offsetHeight;
     });
-    const { handleMouseDown, draging } = useItemDrag(
-      toRef(props, 'item'),
-      itemRef,
-    );
 
     return () => (
       <div
@@ -54,6 +59,7 @@ export default defineComponent({
         ref={itemRef}
         style={itemStyle.value}
         onMousedown={(e) => handleMouseDown(e)}
+        onContextmenu={(e) => handleContextMenu(e)}
       >
         {packagesMap[props.item.key].render()}
       </div>
