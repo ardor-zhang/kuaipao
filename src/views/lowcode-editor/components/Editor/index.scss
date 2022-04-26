@@ -11,6 +11,7 @@
 
     .package-item {
       position: absolute;
+      user-select: none;
 
       &::after {
         content: '';
@@ -19,13 +20,77 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background: #eee;
-        opacity: 0.2;
+      }
+
+      .resize-dot {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background-color: rgb(6, 172, 238);
+        z-index: inherit;
+      }
+
+      .resize-dot-nw {
+        // 西北
+        top: -1.5px;
+        left: -1.5px;
+        cursor: nw-resize;
+      }
+
+      .resize-dot-n {
+        // 正北
+        top: -1.5px;
+        left: calc(50% - 2px);
+        cursor: n-resize;
+      }
+
+      .resize-dot-ne {
+        // 东北
+        top: -1.5px;
+        right: -1.5px;
+        cursor: ne-resize;
+      }
+
+      .resize-dot-e {
+        // 正东
+        top: calc(50% - 2px);
+        right: -1.5px;
+        cursor: e-resize;
+      }
+
+      .resize-dot-se {
+        // 东南
+        right: -1.5px;
+        bottom: -1.5px;
+        cursor: se-resize;
+      }
+
+      .resize-dot-s {
+        // 正南
+        left: calc(50% - 2px);
+        bottom: -1.5px;
+        cursor: s-resize;
+      }
+
+      .resize-dot-sw {
+        // 西南
+        bottom: -1.5px;
+        left: -1.5px;
+        cursor: sw-resize;
+      }
+
+      .resize-dot-w {
+        // 正西
+        top: calc(50% - 2px);
+        left: -1.5px;
+        cursor: w-resize;
       }
     }
 
     .selected {
-      border: 1px dashed skyblue;
+      &::after {
+        border: 1px dashed skyblue;
+      }
     }
 
     .draging {

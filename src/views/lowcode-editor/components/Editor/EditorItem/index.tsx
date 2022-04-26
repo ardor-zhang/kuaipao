@@ -15,6 +15,7 @@ import {
   placeBottomAction,
   deleteAction,
 } from '@editor/components/Header/useAction';
+import Resize from './Resize';
 
 export default defineComponent({
   props: {
@@ -24,11 +25,16 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const itemStyle = computed(() => ({
-      ...props.item.style,
-      top: props.item.style.top + 'px',
-      left: props.item.style.left + 'px',
-    }));
+    const itemStyle = computed(() => {
+      const { top, left, width, height } = props.item.style;
+      return {
+        ...props.item.style,
+        top: top + 'px',
+        left: left + 'px',
+        width: width ? width + 'px' : 'auto',
+        height: height ? height + 'px' : 'auto',
+      };
+    });
 
     const itemRef = ref<null | HTMLElement>(null);
 
@@ -89,6 +95,8 @@ export default defineComponent({
         onMousedown={(e) => handleMouseDown(e)}
         onContextmenu={(e) => handleContextMenu(e)}
       >
+        {props.item.selected && <Resize item={props.item} />}
+
         {packagesMap[props.item.key].render()}
       </div>
     );

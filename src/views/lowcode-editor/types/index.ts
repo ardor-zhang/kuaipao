@@ -22,3 +22,8 @@ export interface EditorData {
     zIndex: number;
   };
 }
+
+export interface ResizeDirection {
+  horizontal: 'left' | 'center' | 'right';
+  vertical: 'top' | 'center' | 'bottom';
+}

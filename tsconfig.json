@@ -23,7 +23,8 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/views/lowcode-editor/packages/Button/index.tsx"
+    "src/views/lowcode-editor/packages/Button/index.tsx",
+    "src/views/lowcode-editor/components/Editor/EditorItem/useContextMenu.tsxs"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
