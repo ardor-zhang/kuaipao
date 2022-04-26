@@ -9,7 +9,7 @@
 
 <template>
   <el-row class="header">
-    <el-col :span="6">
+    <el-col :span="6" class="flex items-center">
       <div>logo</div>
     </el-col>
     <el-col :span="12" class="action flex justify-center items-center">
@@ -23,7 +23,7 @@
         <div>{{ item.lable }}</div>
       </div>
     </el-col>
-    <el-col :span="6"> info </el-col>
+    <el-col :span="6" class="flex items-center"> info </el-col>
   </el-row>
 </template>
 

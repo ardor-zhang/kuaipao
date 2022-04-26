@@ -2,11 +2,13 @@ import revoke from '@/assets/action/revoke.svg?raw';
 import redo from '@/assets/action/redo.svg?raw';
 import placeTop from '@/assets/action/place-top.svg?raw';
 import placeBottom from '@/assets/action/place-bottom.svg?raw';
+import clear from '@/assets/action/clear.svg?raw';
 import {
   revokeAction,
   redoAction,
   placeTopAction,
   placeBottomAction,
+  clearAction,
 } from './useAction';
 
 interface Action {
@@ -48,6 +50,11 @@ registerAction({
   lable: '置底',
   icon: placeBottom,
   event: () => placeBottomAction(),
+});
+registerAction({
+  lable: '清空',
+  icon: clear,
+  event: () => clearAction(),
 });
 
 const handleKeydown = (e: KeyboardEvent) => {

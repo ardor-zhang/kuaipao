@@ -2,6 +2,7 @@
 // 需要在栈中记录操作前后的 editorData
 import { editorData, dataWithSelectedStatus } from '@editor/store';
 import { EditorData } from '@editor/types';
+import { cloneDeep } from 'lodash-es';
 
 interface ActionStack {
   before: EditorData[];
@@ -37,6 +38,7 @@ const redoAction = () => {
 
 // 置顶
 const placeTopAction = () => {
+  const before = cloneDeep(editorData.value);
   // 1. 找到所有未选中的最大 index
   const maxIndex = dataWithSelectedStatus.value.unSelectedItem.reduce(
     (prevIndex, i) => {
@@ -48,10 +50,12 @@ const placeTopAction = () => {
   dataWithSelectedStatus.value.selectedItem.forEach(
     (i) => (i.style.zIndex = maxIndex + 1),
   );
+  addAction(before, cloneDeep(editorData.value));
 };
 
 // 置底
 const placeBottomAction = () => {
+  const before = cloneDeep(editorData.value);
   // 1. 找到所有未选中的最小 index
   const minIndex = dataWithSelectedStatus.value.unSelectedItem.reduce(
     (prevIndex, i) => {
@@ -63,6 +67,14 @@ const placeBottomAction = () => {
   dataWithSelectedStatus.value.selectedItem.forEach(
     (i) => (i.style.zIndex = minIndex - 1),
   );
+  addAction(before, cloneDeep(editorData.value));
+};
+
+// 清空
+const clearAction = () => {
+  const before = cloneDeep(editorData.value);
+  editorData.value = [];
+  addAction(before, cloneDeep(editorData.value));
 };
 
 export {
@@ -71,4 +83,5 @@ export {
   redoAction,
   placeTopAction,
   placeBottomAction,
+  clearAction,
 };
